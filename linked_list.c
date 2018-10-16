@@ -1,14 +1,7 @@
-struct song_node{ 
-  char name[100];
-  char artist[100];
-  struct song_node *next;
-};
-
-
-//and later:
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "linked_list.h"
 struct song_node * table[27];
 // ^^delete this after you make the header file
 /**
@@ -32,7 +25,7 @@ char* to_lower(char* original){
   return holder;
 }
 
-struct song_node * insert_front(struct song_node * p, char name[100], char artist[100]){
+struct song_node * insert_front(struct song_node * p, char artist[100], char name[100]){
   struct song_node * new;
   strcpy(new->name, to_lower(name));
   strcpy(new->artist, to_lower(artist));
@@ -40,9 +33,29 @@ struct song_node * insert_front(struct song_node * p, char name[100], char artis
   return new;
 }
 
-struct song_node * insert_order(struct song_node * start, char name[100], char artist[100]){
+struct song_node * insert_order(struct song_node * start, char artist[100], char name[100]){
   struct song_node * new;
   strcpy(new->name, to_lower(name));
   strcpy(new->artist, to_lower(artist));
-  while(strcmp(new->name
+  while(strcmp(new->artist, start->artist) > 0){
+    start = start->next;
+  }
+  while(strcmp(new->name, start->name) > 0){
+    start = start->next;
+  }
+  new->next = start->next;
+  start->next = new;
+  return new;
+}
+
+int main(){
+  struct song_node * jon = insert_front(NULL, "bambino", "dsong");
+  jon = insert_front(jon, "bambino", "asong");
+  jon = insert_front(jon, "artist", "asongmysong");
+  insert_order(jon, "bambino", "csong");
+  while (jon){
+    printf("artist: %s song: %s\n", jon->artist, jon->name);
+    jon=jon->next;
+  }
+}
 
