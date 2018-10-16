@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#ifndef LINKED_LIST_H
+#definde LINKED_LIST_H
 
 struct song_node{
   char name[100];
@@ -23,3 +22,5 @@ struct song_node * get_random(struct song_node * start);
 void remove_song(struct song_node * x);
 
 void free_list(struct song_node * first);
+
+#endif

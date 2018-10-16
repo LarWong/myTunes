@@ -1,21 +1,19 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include "linked_list.h"
 
-void add_song(struct song_node * song);
+void add_song(struct song_node * table[], struct song_node * song);
 
-struct song_node * search_song(char song[], char artist[]);
+struct song_node * search_song(struct song_node * table[], char song[], char artist[]);
 
-struct song_node * search_artist(char artist[]);
+struct song_node * search_artist(struct song_node * table[], char artist[]);
 
-void print_letter(char letter);
+void print_letter(struct song_node * table[], char letter);
 
-void print_artist(char artist[]);
+void print_artist(struct song_node * table[], char artist[]);
 
-void print_lib();
+void print_lib(struct song_node * table[]);
 
-void print_shuffle();
+void print_shuffle(struct song_node * table[]);
 
-void delete_song(char song[]);
+void delete_song(struct song_node * table, char song[]);
 
-void clear_lib(struct song_node * lib[]);
+void clear_lib(struct song_node * table[]);
