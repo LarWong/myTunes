@@ -1,5 +1,5 @@
 #ifndef LINKED_LIST_H
-#definde LINKED_LIST_H
+#define LINKED_LIST_H
 
 struct song_node{
   char name[100];

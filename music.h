@@ -1,3 +1,6 @@
+#ifndef MUSIC_H
+#define MUSIC_H
+
 #include "linked_list.h"
 
 void add_song(struct song_node * table[], struct song_node * song);
@@ -17,3 +20,5 @@ void print_shuffle(struct song_node * table[]);
 void delete_song(struct song_node * table, char song[]);
 
 void clear_lib(struct song_node * table[]);
+
+#endif
