@@ -1,6 +1,11 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+#include<time.h>
 #include "linked_list.h"
 
 void add_song(struct song_node * table[], char artist[], char song[]);
@@ -17,7 +22,7 @@ void print_lib(struct song_node * table[]);
 
 void print_shuffle(struct song_node * table[]);
 
-void delete_song(struct song_node * table, char artist[], char song[]);
+void delete_song(struct song_node * table[], char artist[], char song[]);
 
 void clear_lib(struct song_node * table[]);
 
