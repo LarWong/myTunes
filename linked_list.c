@@ -2,7 +2,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "linked_list.h"
-struct song_node * table[27];
 // ^^delete this after you make the header file
 /**
 insert nodes at the front
@@ -17,7 +16,7 @@ free the entire list
 **/
 
 char* to_lower(char* original){
-  char * holder = malloc(100);
+  char * holder = (char *)malloc(100);
   strcpy(holder, original);
   for(int i = 0; holder[i]; i++){
     holder[i] = tolower(holder[i]);

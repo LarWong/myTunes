@@ -17,7 +17,7 @@ void print_lib(struct song_node * table[]);
 
 void print_shuffle(struct song_node * table[]);
 
-void delete_song(struct song_node * table, char song[]);
+void delete_song(struct song_node * table, char artist[], char song[]);
 
 void clear_lib(struct song_node * table[]);
 
