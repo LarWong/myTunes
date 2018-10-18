@@ -1,100 +1,84 @@
 #include "music.h"
 
-struct song_node * table[27];
 
-void add_song(struct song_node * table[], char artist[], char song[]){ 
+struct song_node * find_index(struct song_node * table[], char c){
   struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
+  if (isalpha(c)){
+    alpha = table[tolower(c)-'a'];
   }else{
     alpha = table[26];
-  }
+  } 
+  return alpha;
+}
+
+void add_song(struct song_node * table[], char artist[], char song[]){ 
   printf("Adding: %s | %s:\n",artist,song);
-  insert_order(alpha,artist,song);
+  insert_order(find_index(table,artist[0]),artist,song);
 }
 
 struct song_node * search_song(struct song_node * table[], char song[], char artist[]){
-  struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
-  }else{
-    alpha = table[26];
-  }
   printf("Searching for: %s | %s:\n",artist,song);
-  struct song_node * position = find_song(alpha,artist,song);
+  struct song_node * position = find_song(find_index(table,artist[0]),artist,song);
   if (position){
-    print_list(position);
+    printf("Found: %s | %s\n",position->artist,position->name);
+  }else{
+    printf("Not Found.\n");
   }
+  return position;
 }
 
 struct song_node * search_artist(struct song_node * table[], char artist[]){
-  struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
+  printf("Searching for Artist: %s\n",artist);
+  struct song_node * position = find_first(find_index(table,artist[0]),artist);
+  if (position){
+    printf("Found Artist.\n");
   }else{
-    alpha = table[26];
+    printf("No Such Artist.\n");
   }
-  return find_first(alpha,artist);
+  return position;
 }
 
 void print_letter(struct song_node * table[], char letter){
-  struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
-  }else{
-    alpha = table[26];
-  }
-  printf("%c List:",letter);
-  print_list(alpha);
+  printf("%c List:\n",letter);
+  print_list(find_index(table,letter));
 }
 
 void print_artist(struct song_node * table[], char artist[]){
-  struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
-  }else{
-    alpha = table[26];
-  }
+  struct song_node * alpha = find_index(table,artist[0]);
   while(alpha){
     if (strcmp(alpha->artist,artist)){
       printf("Artist: %s | Name: %s \n",alpha->artist,alpha->name);
       alpha = alpha->next;
     }
   }
-
 }
 
 void print_lib(struct song_node * table[]){
+  printf("Printing lib:");
   while(table){
-    struct song_node * letter = *table;
-    while(letter){
-      printf("Artist: %s | Name: %s\n",letter->artist,letter->name);
-      letter = letter->next;
-    }
+    print_list(*table); 
     table++;
   }
 }
 
 void print_shuffle(struct song_node * table[]){
-  srand( time(NULL) );
-  int num_songs = rand()%27;
-  while(table && num_songs > 0){
-    struct song_node * random_song = get_random(*table);
-    printf("Artist: %s | Name: %s\n",random_song->artist,random_song->name);
-    table++;
-    num_songs--;
+  int num_songs = 10;
+  struct song_node ** original = table;
+  printf("Shuffled List:");
+  while(num_songs > 0){
+    if (table){
+       struct song_node * random_song = get_random(*table);
+       printf("Artist: %s | Name: %s\n",random_song->artist,random_song->name);
+       table++;
+       num_songs--;
+    }else{
+      table = original; 
+    }
   }
-
 }
 
 void delete_song(struct song_node * table[], char artist[], char song[]){
-  struct song_node * alpha;
-  if (isalpha(artist[0])){
-    alpha = table[tolower(artist[0])-'a'];
-  }else{
-    alpha = table[26];
-  }
-  remove_node(alpha,artist,song);
+  remove_node(find_index(table,artist[0]),artist,song);
 }
 
 void clear_lib(struct song_node * table[]){

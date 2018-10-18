@@ -8,6 +8,8 @@
 #include<time.h>
 #include "linked_list.h"
 
+struct song_node * table[27];
+
 void add_song(struct song_node * table[], char artist[], char song[]);
 
 struct song_node * search_song(struct song_node * table[], char song[], char artist[]);

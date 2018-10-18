@@ -4,5 +4,7 @@
 #include "music.h"
 
 int main(){
+  struct song_node * table[27];
+  printf("%p",table);
   return 0;
 }

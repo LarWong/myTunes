@@ -1,7 +1,5 @@
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
 #include "linked_list.h"
+
 // ^^delete this after you make the header file
 /**
 insert nodes at the front
@@ -24,37 +22,129 @@ char* to_lower(char* original){
   return holder;
 }
 
-struct song_node * insert_front(struct song_node * p, char artist[100], char name[100]){
-  struct song_node * new;
-  strcpy(new->name, to_lower(name));
-  strcpy(new->artist, to_lower(artist));
-  new->next = p;
-  return new;
+int songcmp(struct song_node * first, struct song_node * second){
+    if (strcmp(first->artist,second->artist) == 0){
+        return strcmp(first->name,second->name);
+    }
+    return strcmp(first->artist,second->artist);
 }
 
-struct song_node * insert_order(struct song_node * start, char artist[100], char name[100]){
-  struct song_node * new;
-  strcpy(new->name, to_lower(name));
-  strcpy(new->artist, to_lower(artist));
-  while(strcmp(new->artist, start->artist) > 0){
-    start = start->next;
-  }
-  while(strcmp(new->name, start->name) > 0){
-    start = start->next;
-  }
-  new->next = start->next;
-  start->next = new;
-  return new;
+struct song_node * insert_front(struct song_node * x, char artist[], char song[]){
+    struct song_node * new_front = (struct song_node *)malloc(sizeof(struct song_node));
+    strcpy(new_front->artist, to_lower(artist));
+    strcpy(new_front->name, to_lower(song));
+    new_front->next = x;
+    return new_front;
 }
 
-int main(){
-  struct song_node * jon = insert_front(NULL, "bambino", "dsong");
-  jon = insert_front(jon, "bambino", "asong");
-  jon = insert_front(jon, "artist", "asongmysong");
-  insert_order(jon, "bambino", "csong");
-  while (jon){
-    printf("artist: %s song: %s\n", jon->artist, jon->name);
-    jon=jon->next;
-  }
+struct song_node * insert_order(struct song_node * x, char artist[], char song[]){
+    struct song_node * new_node = (struct song_node *)malloc(sizeof(struct song_node));
+    strcpy(new_node->artist, to_lower(artist));
+    strcpy(new_node->name, to_lower(song));
+
+    if (songcmp(new_node,x) < 0){
+        insert_front(x,artist,song);
+    }
+
+    struct song_node * holder = x;
+    while(x){
+        if (!holder->next){
+            holder->next = new_node;
+            break;
+        }
+        if (songcmp(new_node,holder->next) < 0){
+            new_node->next = holder->next;
+            holder->next = new_node;
+            break;
+        }
+        holder = holder->next;
+    }
+    return x;
 }
+
+void print_list(struct song_node * start){
+    while(start){
+        printf("Artist: %s | Song: %s\n",start->artist,start->name);
+        start = start->next;
+    }
+}
+
+struct song_node * find_song(struct song_node * x, char artist[], char song[]){
+    while(x){
+        if(strcmp(artist,x->artist) == 0 && strcmp(song,x->name) == 0){
+            printf("Found song.\n");
+            return x;
+        }
+        x = x->next;
+    }
+    printf("No such Song.\n");
+    return x;
+}
+
+struct song_node * find_first(struct song_node * x, char artist[]){
+    while(x && strcmp(x->artist,artist) != 0){
+        x = x->next;
+    }
+    if (!x){
+        printf("No such artist.\n");
+    }else{
+        printf("Found.\n");
+    }
+    return x;
+}
+
+struct song_node * get_random(struct song_node * start){
+    int length = 0;
+    struct song_node * original = start;
+    while(start){
+        length++;
+        start = start->next;
+    } 
+    int random_index = rand()%length;
+    while(original && random_index > 0){
+        random_index--;
+        original = original->next;
+    }
+    return original;
+}
+
+struct song_node * remove_node(struct song_node * x, char artist[], char song[]){
+    struct song_node * target = (struct song_node *)malloc(sizeof(struct song_node));
+    strcpy(target->artist, to_lower(artist));
+    strcpy(target->name, to_lower(song));
+
+    struct song_node *holder = x;
+
+    if (songcmp(target,x) == 0){
+        x = x->next;
+        free(holder);
+        free(target);
+        return x;
+    }
+
+    struct song_node *another_holder = x;
+
+    while(another_holder->next){
+        if (songcmp(target,another_holder->next) == 0){
+            holder = another_holder->next;
+            another_holder->next = another_holder->next->next;
+            printf("Found and Removed.\n");
+            return x;
+        }
+        another_holder = another_holder->next;
+    }
+    printf("Not found.\n");
+    return x;
+}
+
+struct song_node * free_list(struct song_node * first){
+    while(first){
+        first = remove_node(first,first->artist,first->name);
+    }
+    return first;
+}
+
+
+
+
 
