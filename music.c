@@ -4,8 +4,14 @@
 struct song_node * find_index(struct song_node * table[], char c){
   struct song_node * alpha;
   if (isalpha(c)){
+      if (!table[tolower(c)-'a']){
+          table[tolower(c)-'a'] = malloc(sizeof(100*sizeof(struct song_node)));
+      }
     alpha = table[tolower(c)-'a'];
   }else{
+      if (!table[26]){
+          table[26] = malloc(sizeof(100*sizeof(struct song_node)));
+      }
     alpha = table[26];
   } 
   return alpha;
@@ -14,6 +20,7 @@ struct song_node * find_index(struct song_node * table[], char c){
 void add_song(struct song_node * table[], char artist[], char song[]){ 
   printf("Adding: %s | %s:\n",artist,song);
   insert_order(find_index(table,artist[0]),artist,song);
+    printf("okay %s | %s added!\n\n",artist,song);
 }
 
 struct song_node * search_song(struct song_node * table[], char song[], char artist[]){
@@ -54,9 +61,13 @@ void print_artist(struct song_node * table[], char artist[]){
 }
 
 void print_lib(struct song_node * table[]){
-  printf("Printing lib:");
-  while(table){
-    print_list(*table); 
+  printf("Printing lib:\n");
+  for (int i = 0; i < 27; i++){
+      if (*table){
+          printf("Artists starting with letter: %c\n", i + 'a');
+          print_list(*table);
+          printf("\n");
+      }
     table++;
   }
 }

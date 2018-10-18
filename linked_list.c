@@ -23,6 +23,9 @@ char* to_lower(char* original){
 }
 
 int songcmp(struct song_node * first, struct song_node * second){
+    if (!second){
+        return 1;
+    }
     if (strcmp(first->artist,second->artist) == 0){
         return strcmp(first->name,second->name);
     }

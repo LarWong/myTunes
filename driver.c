@@ -1,7 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <time.h>
 #include "linked_list.h"
 #include "music.h"
+
+
+char * helper(char * end){
+    char src = "abcdefghijklmnopqrstuvwxyz"[rand()%26];
+    char * holder = malloc(100);
+    holder[0] = src;
+    holder[1] = 0;
+    strcat(holder, end);
+    return holder;
+}
 
 int main(){
     struct song_node * head = NULL;
@@ -64,9 +75,19 @@ int main(){
     print_list(head);
 
     printf("\n\n\n\n");
+    srand(time(NULL));
+    printf("testing for music.c\n");
+    for (int i = 0; i < 10; i++){
+        add_song(table, helper("ool"), helper("song"));
+    }
+    add_song(table, "alan", "the jon song");
 
+    printf("\nhello?\n");
 
+    printf("\nhello?\n");
 
+    print_lib(table);
+    printf("\ndone\n");
 
     return 0;
 }
