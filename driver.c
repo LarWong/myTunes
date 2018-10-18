@@ -77,18 +77,28 @@ int main(){
     printf("\n\n\n\n");
     srand(time(NULL));
     printf("testing for music.c\n");
-    for (int i = 0; i < 10; i++){
-        add_song(table, helper("ool"), helper("song"));
-    }
-    add_song(table, "alan", "the jon song");
-
+    //for (int i = 0; i < 10; i++){
+    //    add_song(table, helper("ool"), helper("song"));
+    //}
+    
+    //add_song(table, "alan", "the jon song");
+    // add_song(table, "alan", "ssfa sssss jon song");
+    //add_song(table, "boo", "also jon the song");
+    //add_song(table, "bwser", "maybe jon da song");
+    //add_song(table, "dog", "the jo");
+ 
+    printf("testing find index\n");
     struct song_node * hello = find_index(table, 'a');
+    printf("%p\n", hello);
+    print_list(hello);
+    print_node(hello);
 
     printf("\n");
-    print_list(hello);
     
     print_lib(table);
     printf("\ndone\n");
+
+    
 
     return 0;
 }
