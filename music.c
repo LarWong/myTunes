@@ -5,12 +5,12 @@ struct song_node * find_index(struct song_node * table[], char c){
   struct song_node * alpha;
   if (isalpha(c)){
       if (!table[tolower(c)-'a']){
-          table[tolower(c)-'a'] = malloc(sizeof(100*sizeof(struct song_node)));
+          table[tolower(c)-'a'] = calloc(100,sizeof(struct song_node));
       }
     alpha = table[tolower(c)-'a'];
   }else{
       if (!table[26]){
-          table[26] = malloc(sizeof(100*sizeof(struct song_node)));
+          table[26] = malloc(sizeof(100, sizeof(struct song_node)));
       }
     alpha = table[26];
   } 

@@ -47,6 +47,7 @@ struct song_node * insert_order(struct song_node * x, char artist[], char song[]
 
     if (songcmp(new_node,x) < 0){
         insert_front(x,artist,song);
+        return x;
     }
 
     struct song_node * holder = x;

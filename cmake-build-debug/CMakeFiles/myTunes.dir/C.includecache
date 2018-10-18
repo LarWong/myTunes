@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/Users/jason/myTunes/driver.c
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+linked_list.h
+/Users/jason/myTunes/linked_list.h
+music.h
+/Users/jason/myTunes/music.h
+
 /Users/jason/myTunes/linked_list.h
 string.h
 -
@@ -15,10 +27,6 @@ ctype.h
 -
 stdlib.h
 -
-
-/Users/jason/myTunes/music.c
-music.h
-/Users/jason/myTunes/music.h
 
 /Users/jason/myTunes/music.h
 stdio.h
