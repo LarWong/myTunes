@@ -8,6 +8,7 @@ linked_list.o: linked_list.c linked_list.h
 	gcc -c -g linked_list.c linked_list.h
 
 run:
+	make
 	./driver.out
 
 clean:

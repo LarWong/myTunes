@@ -63,6 +63,10 @@ struct song_node * insert_order(struct song_node * x, char artist[], char song[]
 }
 
 void print_list(struct song_node * start){
+    if (!start){
+        printf("No Music Available...\n\n");
+        return;
+    }
     while(start){
         printf("Artist: %s | Song: %s\n",start->artist,start->name);
         start = start->next;
