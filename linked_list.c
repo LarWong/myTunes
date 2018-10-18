@@ -151,6 +151,10 @@ struct song_node * free_list(struct song_node * first){
     return first;
 }
 
+struct song_node * print_node(struct song_node * node){
+  printf("Artist: %s | Song: %s\n",node->artist,node->name);
+  return node;
+}
 
 
 

@@ -82,10 +82,11 @@ int main(){
     }
     add_song(table, "alan", "the jon song");
 
-    printf("\nhello?\n");
+    struct song_node * hello = find_index(table, 'a');
 
-    printf("\nhello?\n");
-
+    printf("\n");
+    print_list(hello);
+    
     print_lib(table);
     printf("\ndone\n");
 
