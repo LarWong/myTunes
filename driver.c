@@ -17,8 +17,8 @@ int main(){
     head = insert_order(head,"xool","xat");
 
     head = insert_order(head,"cool","zat");
-    head = insert_order(head,"cool","rat");
-    head = insert_order(head,"cool","rezz");
+    head = insert_order(head,"Cool","Rat");
+    head = insert_order(head,"Cool","Cezz");
 
     head = insert_order(head,"xool","asa");
     head = insert_order(head,"xool","treww");
@@ -47,8 +47,8 @@ int main(){
     rando = get_random(head);
     printf("%s | %s\n",rando->artist,rando->name);
 
-    printf("Removing cool | cat:\n");
-    head = remove_node(head,"cool","cat");
+    printf("Removing Cool | Cat:\n");
+    head = remove_node(head,"Cool","Cat");
     print_list(head);
     
     printf("Removing cool | rat:\n");

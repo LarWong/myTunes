@@ -75,7 +75,7 @@ void print_list(struct song_node * start){
 
 struct song_node * find_song(struct song_node * x, char artist[], char song[]){
     while(x){
-        if(strcmp(artist,x->artist) == 0 && strcmp(song,x->name) == 0){
+        if(strcmp(to_lower(artist),x->artist) == 0 && strcmp(to_lower(song),x->name) == 0){
             printf("Found song.\n");
             return x;
         }
@@ -86,7 +86,7 @@ struct song_node * find_song(struct song_node * x, char artist[], char song[]){
 }
 
 struct song_node * find_first(struct song_node * x, char artist[]){
-    while(x && strcmp(x->artist,artist) != 0){
+    while(x && strcmp(x->artist,to_lower(artist)) != 0){
         x = x->next;
     }
     if (!x){
