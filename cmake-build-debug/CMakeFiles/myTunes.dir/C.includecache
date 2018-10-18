@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jason/myTunes/driver.c
+stdio.h
+-
+stdlib.h
+-
+linked_list.h
+/Users/jason/myTunes/linked_list.h
+music.h
+/Users/jason/myTunes/music.h
+
+/Users/jason/myTunes/linked_list.c
+linked_list.h
+/Users/jason/myTunes/linked_list.h
+
+/Users/jason/myTunes/linked_list.h
+string.h
+-
+stdio.h
+-
+ctype.h
+-
+stdlib.h
+-
+
+/Users/jason/myTunes/music.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+ctype.h
+-
+time.h
+-
+linked_list.h
+/Users/jason/myTunes/linked_list.h
+

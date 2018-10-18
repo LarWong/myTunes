@@ -84,5 +84,6 @@ void delete_song(struct song_node * table[], char artist[], char song[]){
 void clear_lib(struct song_node * table[]){
   while(table){
     free_list(*table);
+    table++;
   }
 }
