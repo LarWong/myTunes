@@ -30,4 +30,6 @@ struct song_node * remove_node(struct song_node * x, char artist[], char song[])
 
 struct song_node * free_list(struct song_node * first);
 
+char * to_lower(char * x);
+
 #endif

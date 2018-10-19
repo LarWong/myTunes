@@ -5,6 +5,10 @@
 #include "music.h"
 
 int main(){
+   printf("(To Make Not Case Sensitive)Testing to_lower():\n");
+   printf("%s to %s\n","EDFsdfHYH",to_lower("EDFsdfHYH"));
+   printf("%s to %s\n\n","cccCCccc",to_lower("cccCCccc"));   
+
    printf("Testing linked_list:\n");
    struct song_node * head = NULL;
    printf("Adding to the Front:\n");
