@@ -1,18 +1,5 @@
 #include "linked_list.h"
 
-// ^^delete this after you make the header file
-/**
-insert nodes at the front
-insert nodes in order
-alphabetical by Artist then by Song
-print the entire list
-find and return a pointer to a node based on artist and song name
-find and return a pointer to the first song of an artist based on artist name
-Return a pointer to random element in the list.
-remove a single specified node from the list
-free the entire list
-**/
-
 char* to_lower(char* original){
   char * holder = (char *)malloc(100);
   strcpy(holder, original);
@@ -45,9 +32,8 @@ struct song_node * insert_order(struct song_node * x, char artist[], char song[]
     strcpy(new_node->artist, to_lower(artist));
     strcpy(new_node->name, to_lower(song));
 
-    if (songcmp(new_node,x) < 0){
-        insert_front(x,artist,song);
-        return x;
+    if (x == NULL || songcmp(new_node,x) < 0){
+        return insert_front(x,artist,song);
     }
 
     struct song_node * holder = x;
@@ -72,7 +58,7 @@ void print_list(struct song_node * start){
         return;
     }
     while(start){
-        printf("Artist: %s | Song: %s\n",start->artist,start->name);
+        printf("Artist: %s | Song: %s\n\n",start->artist,start->name);
         start = start->next;
     }
 }
@@ -136,26 +122,22 @@ struct song_node * remove_node(struct song_node * x, char artist[], char song[])
         if (songcmp(target,another_holder->next) == 0){
             holder = another_holder->next;
             another_holder->next = another_holder->next->next;
-            printf("Found and Removed.\n");
+            printf("Found and Removed.\n\n");
             return x;
         }
         another_holder = another_holder->next;
     }
-    printf("Not found.\n");
+    printf("Not found.\n\n");
     return x;
 }
 
 struct song_node * free_list(struct song_node * first){
-    while(first){
+    while(first != NULL){
         first = remove_node(first,first->artist,first->name);
     }
     return first;
 }
 
-struct song_node * print_node(struct song_node * node){
-  printf("Artist: %s | Song: %s\n",node->artist,node->name);
-  return node;
-}
 
 
 

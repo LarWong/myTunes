@@ -12,6 +12,8 @@ struct song_node{
   struct song_node *next;
 };
 
+int songcmp(struct song_node * first, struct song_node * second);
+
 struct song_node * insert_front(struct song_node * x, char artist[], char song[]);
 
 struct song_node * insert_order(struct song_node * x, char artist[], char song[]);
@@ -27,7 +29,5 @@ struct song_node * get_random(struct song_node * start);
 struct song_node * remove_node(struct song_node * x, char artist[], char song[]);
 
 struct song_node * free_list(struct song_node * first);
-
-struct song_node * print_node(struct song_node * node);
 
 #endif

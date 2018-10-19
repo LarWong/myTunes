@@ -10,7 +10,9 @@
 
 struct song_node * table[27];
 
-struct song_node * find_index(struct song_node * table[], char c);
+void create_lib(struct song_node * table[]);
+
+int find_index(char c);
 
 void add_song(struct song_node * table[], char artist[], char song[]);
 
